@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de jhiaim - BTS SIO SISR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ppe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .ppe-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .ppe-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ppe-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .ppe-card .ppe-number {
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ppe-card .ppe-description {
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+
+        .ppe-card .ppe-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-category li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: #e9ecef;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>jhiaim</h1>
+            <p class="subtitle">Étudiant en BTS SIO SISR</p>
+            <p>Solutions d'Infrastructure, Systèmes et Réseaux</p>
+        </header>
+
+        <nav>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('about')">À propos</button>
+                <button class="nav-tab" onclick="showTab('ppe')">PPE</button>
+                <button class="nav-tab" onclick="showTab('skills')">Compétences</button>
+                <button class="nav-tab" onclick="showTab('contact')">Contact</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <!-- Onglet À propos -->
+            <div id="about" class="tab-content active">
+                <h2>À propos de moi</h2>
+                <p style="margin-top: 1rem; line-height: 1.8;">
+                    Étudiant en BTS SIO SISR (Solutions d'Infrastructure, Systèmes et Réseaux), je suis passionné par l'informatique, l'administration réseau et la cybersécurité.
+                </p>
+                <p style="margin-top: 1rem; line-height: 1.8;">
+                    Au cours de ma formation, j'ai développé des compétences en administration système, gestion de réseaux, sécurité informatique et virtualisation. Je cherche constamment à approfondir mes connaissances dans ces domaines en pleine évolution.
+                </p>
+                <p style="margin-top: 1rem; line-height: 1.8;">
+                    <strong>Objectif professionnel :</strong> Je souhaite évoluer dans l'administration réseau et la cybersécurité, en contribuant à la sécurisation et à l'optimisation des infrastructures informatiques.
+                </p>
+            </div>
+
+            <!-- Onglet PPE -->
+            <div id="ppe" class="tab-content">
+                <h2>Mes Projets Personnels Encadrés (PPE)</h2>
+                <p style="margin-top: 1rem;">
+                    Voici les différents PPE réalisés durant ma formation BTS SIO SISR :
+                </p>
+
+                <div class="ppe-grid">
+                    <div class="ppe-card">
+                        <span class="ppe-number">PPE 1</span>
+                        <h3>Mise en place d'une infrastructure réseau</h3>
+                        <div class="ppe-description">
+                            Configuration et administration d'un réseau d'entreprise avec VLAN, routage et services réseau (DHCP, DNS).
+                        </div>
+                        <div class="ppe-tech">
+                            <span class="tech-tag">Cisco</span>
+                            <span class="tech-tag">VLAN</span>
+                            <span class="tech-tag">Routage</span>
+                            <span class="tech-tag">DHCP</span>
+                        </div>
+                    </div>
+
+                    <div class="ppe-card">
+                        <span class="ppe-number">PPE 2</span>
+                        <h3>Virtualisation et administration système</h3>
+                        <div class="ppe-description">
+                            Déploiement d'une infrastructure virtualisée avec gestion des machines virtuelles et mise en place de services Windows Server.
+                        </div>
+                        <div class="ppe-tech">
+                            <span class="tech-tag">VMware</span>
+                            <span class="tech-tag">Windows Server</span>
+                            <span class="tech-tag">Active Directory</span>
+                            <span class="tech-tag">Hyper-V</span>
+                        </div>
+                    </div>
+
+                    <div class="ppe-card">
+                        <span class="ppe-number">PPE 3</span>
+                        <h3>Sécurisation d'infrastructure</h3>
+                        <div class="ppe-description">
+                            Mise en œuvre de solutions de sécurité : pare-feu, VPN, politiques de sécurité et surveillance du réseau.
+                        </div>
+                        <div class="ppe-tech">
+                            <span class="tech-tag">Firewall</span>
+                            <span class="tech-tag">VPN</span>
+                            <span class="tech-tag">pfSense</span>
+                            <span class="tech-tag">Sécurité</span>
+                        </div>
+                    </div>
+
+                    <div class="ppe-card">
+                        <span class="ppe-number">PPE 4</span>
+                        <h3>Supervision et monitoring</h3>
+                        <div class="ppe-description">
+                            Installation et configuration d'outils de supervision pour le monitoring des infrastructures et la gestion des incidents.
+                        </div>
+                        <div class="ppe-tech">
+                            <span class="tech-tag">Nagios</span>
+                            <span class="tech-tag">SNMP</span>
+                            <span class="tech-tag">Monitoring</span>
+                            <span class="tech-tag">Zabbix</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet Compétences -->
+            <div id="skills" class="tab-content">
+                <h2>Compétences techniques</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Administration Système</h3>
+                        <ul>
+                            <li>Windows Server</li>
+                            <li>Linux (Debian, Ubuntu)</li>
+                            <li>Active Directory</li>
+                            <li>PowerShell / Bash</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Réseaux</h3>
+                        <ul>
+                            <li>Configuration routeurs/switches</li>
+                            <li>VLAN et routage</li>
+                            <li>TCP/IP, DNS, DHCP</li>
+                            <li>Cisco Packet Tracer</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Virtualisation</h3>
+                        <ul>
+                            <li>VMware ESXi</li>
+                            <li>Hyper-V</li>
+                            <li>VirtualBox</li>
+                            <li>Docker (notions)</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Cybersécurité</h3>
+                        <ul>
+                            <li>Pare-feu (pfSense, iptables)</li>
+                            <li>VPN</li>
+                            <li>Politiques de sécurité</li>
+                            <li>Analyse de logs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet Contact -->
+            <div id="contact" class="tab-content">
+                <h2>Contact</h2>
+                <p style="margin-top: 1rem;">N'hésitez pas à me contacter pour toute opportunité ou collaboration !</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            votre.email@exemple.com
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <strong>LinkedIn</strong><br>
+                            <a href="https://linkedin.com/in/votreprofil" target="_blank">linkedin.com/in/votreprofil</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💻</div>
+                        <div>
+                            <strong>GitHub</strong><br>
+                            <a href="https://github.com/jhiaim" target="_blank">github.com/jhiaim</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Masquer tous les contenus
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Désactiver tous les onglets
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Activer l'onglet sélectionné
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
